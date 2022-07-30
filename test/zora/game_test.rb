@@ -24,6 +24,10 @@ module Zora
     def test_name_returns_the_games_name
       assert_equal "Kabi", games[:seasons][:us][1].name
       assert_equal "Andy", games[:seasons][:us][2].name
+      assert_equal "Link", games[:seasons][:eu][0].name
+      assert_equal "Link", games[:seasons][:eu][1].name
+      assert_equal "Link", games[:seasons][:eu][2].name
+      assert_equal "Link", games[:ages][:us][0].name
     end
 
     private
