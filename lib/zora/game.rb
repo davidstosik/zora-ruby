@@ -9,10 +9,6 @@ module Zora
     end
 
     def version
-      data = File.open(path) do |file|
-        file.seek(DATA_OFFSET + (index-1)*DATA_SIZE)
-        file.read(DATA_SIZE)
-      end
       data[2, 8]
     end
 
@@ -31,15 +27,18 @@ module Zora
     end
 
     def name
-      data = File.open(path) do |file|
-        file.seek(DATA_OFFSET + (index-1)*DATA_SIZE)
-        file.read(DATA_SIZE)
-      end
       data[82, 5].strip
     end
 
     private
 
     attr_reader :path, :index
+
+    def data
+      @data ||= File.open(path) do |file|
+        file.seek(DATA_OFFSET + (index-1)*DATA_SIZE)
+        file.read(DATA_SIZE)
+      end
+    end
   end
 end
