@@ -2,6 +2,10 @@ module Zora
   class Game
     DATA_OFFSET = 16
     DATA_SIZE = 1360
+    NAME_OFFSET = 82
+    NAME_SIZE = 5
+    VERSION_OFFSET = 2
+    VERSION_SIZE = 8
 
     def initialize(path, index)
       @path = path
@@ -9,7 +13,7 @@ module Zora
     end
 
     def version
-      data[2, 8]
+      data[VERSION_OFFSET, VERSION_SIZE]
     end
 
     def variant
@@ -27,7 +31,7 @@ module Zora
     end
 
     def name
-      data[82, 5].strip
+      data[NAME_OFFSET, NAME_SIZE].strip
     end
 
     private
