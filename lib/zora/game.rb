@@ -40,7 +40,7 @@ module Zora
 
     def data
       @data ||= File.open(path) do |file|
-        file.seek(DATA_OFFSET + (index-1)*DATA_SIZE)
+        file.seek(DATA_OFFSET + index*DATA_SIZE)
         file.read(DATA_SIZE)
       end
     end
