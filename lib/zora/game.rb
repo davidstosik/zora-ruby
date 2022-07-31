@@ -1,5 +1,7 @@
 module Zora
   class Game
+    KILOBYTE = 1024
+    SAVE_GAME_SIZE = 8 * KILOBYTE
     DATA_OFFSET = 16
     DATA_SIZE = 1360
     NAME_OFFSET = 82
@@ -26,7 +28,7 @@ module Zora
 
     def valid?
       File.exist?(path) && \
-        File.size(path) == 8*1024 && \
+        File.size(path) == SAVE_GAME_SIZE && \
         %w(Seasons Ages).include?(variant)
     end
 
