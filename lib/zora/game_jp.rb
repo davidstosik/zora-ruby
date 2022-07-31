@@ -17,11 +17,5 @@ module Zora
       ゥェォッャュョガギグゲゴザジズゼ
       ゾダヂヅデドバビブベボパピプペポ
     CHARSET
-
-    def name
-      super.bytes.map do |byte|
-        CHARSET[byte-16]
-      end.join
-    end
   end
 end

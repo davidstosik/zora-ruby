@@ -9,6 +9,20 @@ module Zora
       name: [82, 5]
     }
 
+    CHARSET = <<~CHARSET.tr("\n", "")
+      ●♣♦♠\0↑↓←→\0\0「」·\0。
+       !\"\#$%&'()*+,-./
+      0123456789:;<=>?
+      @ABCDEFGHIJKLMNO
+      PQRSTUVWXYZ[~]^\0
+      \0abcdefghijklmno
+      pqrstuvwxyz{￥}▲■
+      ÀÂÄÆÇÈÉÊËÎÏÑÖŒÙÛ
+      Ü\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+      àâäæçèéêëîïñöœùû
+      ü\0\0\0\0\0\0\0\0\0\0\0\0♥\0\0
+    CHARSET
+
     def initialize(path, index)
       @path = path
       @index = index
@@ -33,7 +47,10 @@ module Zora
     end
 
     def name
-      fetch(:name).strip
+      fetch(:name).bytes.map do |byte|
+        next if byte == 0
+        self.class::CHARSET[byte-16]
+      end.join
     end
 
     private
