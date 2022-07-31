@@ -1,6 +1,7 @@
 require "minitest/autorun"
 
 require_relative "../../lib/zora/game"
+require_relative "../../lib/zora/game_jp"
 
 module Zora
   class GameTest < Minitest::Test
@@ -28,6 +29,14 @@ module Zora
       assert_equal "Link", games[:seasons][:eu][1].name
       assert_equal "Link", games[:seasons][:eu][2].name
       assert_equal "Link", games[:ages][:us][0].name
+      assert_equal "リンク", games[:ages][:jp][1].name
+    end
+
+    def test_name_returns_the_games_name_even_in_japanese
+      path = "test/saves/Ages_JP-names.srm"
+      assert_equal "か-びぃ-", GameJp.new(path, 0).name
+      assert_equal "リンク", GameJp.new(path, 1).name
+      assert_equal "カ-ピョ-", GameJp.new(path, 2).name
     end
 
     private
@@ -44,7 +53,12 @@ module Zora
 
     def load_save_file(variant, region)
       0.upto(2).map do |index|
-        Game.new("test/saves/#{variant.to_s.capitalize}_#{region.to_s.upcase}.srm", index)
+        if region == :jp
+          klass = GameJp
+        else
+          klass = Game
+        end
+        klass.new("test/saves/#{variant.to_s.capitalize}_#{region.to_s.upcase}.srm", index)
       end
     end
   end
