@@ -4,10 +4,10 @@ module Zora
     SAVE_GAME_SIZE = 8 * KILOBYTE
     DATA_OFFSET = 16
     DATA_SIZE = 1360
-    NAME_OFFSET = 82
-    NAME_SIZE = 5
-    VERSION_OFFSET = 2
-    VERSION_SIZE = 8
+    ADDRESSES = {
+      version: [2, 8],
+      name: [82, 5]
+    }
 
     def initialize(path, index)
       @path = path
@@ -15,7 +15,7 @@ module Zora
     end
 
     def version
-      data[VERSION_OFFSET, VERSION_SIZE]
+      fetch(:version)
     end
 
     def variant
@@ -33,12 +33,16 @@ module Zora
     end
 
     def name
-      data[NAME_OFFSET, NAME_SIZE].strip
+      fetch(:name).strip
     end
 
     private
 
     attr_reader :path, :index
+
+    def fetch(key)
+      data.slice(*ADDRESSES[key])
+    end
 
     def data
       @data ||= File.open(path) do |file|
