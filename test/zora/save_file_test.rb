@@ -15,5 +15,17 @@ module Zora
         assert_equal "Link", game.name
       end
     end
+
+    def test_valid?
+      save_file = SaveFile.new("test/saves/Seasons_EU.srm")
+
+      assert save_file.valid?
+
+      Tempfile.open do |file|
+        save_file = SaveFile.new(file.path)
+
+        refute save_file.valid?
+      end
+    end
   end
 end
