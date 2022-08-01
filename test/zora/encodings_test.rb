@@ -1,6 +1,4 @@
-require "minitest/autorun"
-
-require_relative "../../lib/zora/encodings"
+require "test_helper"
 
 module Zora
   module Encodings

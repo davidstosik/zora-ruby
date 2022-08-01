@@ -1,6 +1,4 @@
-require "minitest/autorun"
-
-require_relative "../../lib/zora/save_file"
+require "test_helper"
 
 module Zora
   class SaveFileTest < Minitest::Test

@@ -1,6 +1,4 @@
-require "minitest/autorun"
-
-require_relative "../../lib/zora/game"
+require "test_helper"
 
 module Zora
   class GameTest < Minitest::Test

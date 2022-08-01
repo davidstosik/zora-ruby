@@ -1,6 +1,4 @@
-require "minitest/autorun"
-
-require_relative "../../lib/zora/raw_string"
+require "test_helper"
 
 module Zora
   class RawStringTest < Minitest::Test
