@@ -14,12 +14,11 @@ module Zora
     }.freeze
 
     def self.from_file(path, index)
-      new(path, index)
+      new File.read(path, DATA_SIZE, DATA_OFFSET + index * DATA_SIZE)
     end
 
-    def initialize(path, index)
-      @path = path
-      @index = index
+    def initialize(data)
+      @data = data
     end
 
     def version
@@ -35,8 +34,7 @@ module Zora
     end
 
     def valid?
-      File.exist?(path) && \
-        File.size(path) == SAVE_GAME_SIZE && \
+      data.size == DATA_SIZE && \
         %w(Seasons Ages).include?(variant)
     end
 
@@ -46,17 +44,10 @@ module Zora
 
     private
 
-    attr_reader :path, :index
+    attr_reader :data
 
     def fetch(key)
       data.slice(*ADDRESSES[key])
-    end
-
-    def data
-      @data ||= File.open(path) do |file|
-        file.seek(DATA_OFFSET + index * DATA_SIZE)
-        file.read(DATA_SIZE)
-      end
     end
   end
 end

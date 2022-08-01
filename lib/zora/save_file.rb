@@ -12,12 +12,13 @@ module Zora
     end
 
     def games
-      0.upto(2).map { |i| Game.new(file_path, i) }
+      0.upto(2).map { |i| Game.from_file(file_path, i) }
     end
 
     def valid?
       # TODO: figure out more validations
-      File.size(file_path) == SIZE
+      File.exist?(file_path) && \
+        File.size(file_path) == SIZE
     end
 
     private

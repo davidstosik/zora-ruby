@@ -51,7 +51,7 @@ module Zora
 
     def load_save_file(variant, region)
       0.upto(2).map do |index|
-        Game.new("test/saves/#{variant.to_s.capitalize}_#{region.to_s.upcase}.srm", index)
+        Game.from_file("test/saves/#{variant.to_s.capitalize}_#{region.to_s.upcase}.srm", index)
       end
     end
   end
