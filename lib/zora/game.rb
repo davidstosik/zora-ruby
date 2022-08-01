@@ -1,3 +1,5 @@
+require_relative "raw_string"
+
 module Zora
   class Game
     KILOBYTE = 1024
@@ -8,20 +10,6 @@ module Zora
       version: [2, 8],
       name: [82, 5]
     }
-
-    CHARSET = <<~CHARSET.tr("\n", "")
-      ●♣♦♠\0↑↓←→\0\0「」·\0。
-       !\"\#$%&'()*+,-./
-      0123456789:;<=>?
-      @ABCDEFGHIJKLMNO
-      PQRSTUVWXYZ[~]^\0
-      \0abcdefghijklmno
-      pqrstuvwxyz{￥}▲■
-      ÀÂÄÆÇÈÉÊËÎÏÑÖŒÙÛ
-      Ü\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
-      àâäæçèéêëîïñöœùû
-      ü\0\0\0\0\0\0\0\0\0\0\0\0♥\0\0
-    CHARSET
 
     def initialize(path, index)
       @path = path
@@ -47,10 +35,7 @@ module Zora
     end
 
     def name
-      fetch(:name).bytes.map do |byte|
-        next if byte == 0
-        self.class::CHARSET[byte-16]
-      end.join
+      RawString.new(fetch(:name)).to_s
     end
 
     private
