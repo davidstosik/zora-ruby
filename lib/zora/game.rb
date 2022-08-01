@@ -4,8 +4,6 @@ require_relative "raw_string"
 
 module Zora
   class Game
-    KILOBYTE = 1024
-    SAVE_GAME_SIZE = 8 * KILOBYTE
     DATA_OFFSET = 0x10
     DATA_SIZE = 1360
     ADDRESSES = {
