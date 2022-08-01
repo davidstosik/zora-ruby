@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Zora
   module Encodings
     class English
@@ -25,7 +27,7 @@ module Zora
 
       def self.decode(raw_string)
         raw_string.bytes.map do |byte|
-          next if byte == 0
+          next if byte.zero?
 
           self::CHARSET[byte - 16]
         end.join

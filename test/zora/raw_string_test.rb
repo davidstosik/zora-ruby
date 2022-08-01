@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 module Zora
@@ -7,7 +9,7 @@ module Zora
       satoshi_katakana: "\xBA\xC3\xBB\x00\x00",
       satoshi_hiragana: "\x6a\x73\x6b\x00\x00",
       abcd: "\x61\x62\x63\x64\x00",
-    }
+    }.freeze
 
     def test_detects_encoding_when_string_has_exclusive_characters
       assert_equal Encodings::English, build_raw_string(:link_capitalized).encoding

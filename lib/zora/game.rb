@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "raw_string"
 
 module Zora
@@ -9,7 +11,7 @@ module Zora
     ADDRESSES = {
       version: [0x02, 0x08],
       name: [0x52, 0x05],
-    }
+    }.freeze
 
     def initialize(path, index)
       @path = path
