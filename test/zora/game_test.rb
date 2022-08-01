@@ -21,7 +21,7 @@ module Zora
       refute games[:seasons][:us][0].valid?
     end
 
-    def test_name_returns_the_games_name
+    def test_name_returns_the_games_name # rubocop:disable Metrics/AbcSize
       assert_equal "Kabi", games[:seasons][:us][1].name
       assert_equal "Andy", games[:seasons][:us][2].name
       assert_equal "Link", games[:seasons][:eu][0].name
