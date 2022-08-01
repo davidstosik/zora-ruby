@@ -22,7 +22,7 @@ module Zora
     private
 
     def detect_encoding
-       if valid_jp? && !valid_us?
+      if valid_jp? && !valid_us?
         Encodings::Japanese
       elsif valid_us? && !valid_jp?
         Encodings::English
