@@ -8,7 +8,7 @@ module Zora
     DATA_SIZE = 1360
     ADDRESSES = {
       version: [0x02, 0x08],
-      name: [0x52, 0x05]
+      name: [0x52, 0x05],
     }
 
     def initialize(path, index)
@@ -48,7 +48,7 @@ module Zora
 
     def data
       @data ||= File.open(path) do |file|
-        file.seek(DATA_OFFSET + index*DATA_SIZE)
+        file.seek(DATA_OFFSET + index * DATA_SIZE)
         file.read(DATA_SIZE)
       end
     end

@@ -14,7 +14,7 @@ module Zora
     end
 
     def valid?
-      # TODO figure out more validations
+      # TODO: figure out more validations
       File.size(file_path) == SIZE
     end
 

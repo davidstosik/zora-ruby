@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors = ["David Stosik"]
   spec.email = ["david.stosik+git-noreply@gmail.com"]
 
-  spec.summary = %q{Manipulate save data and secrets from the Zelda Oracle games.}
+  spec.summary = "Manipulate save data and secrets from the Zelda Oracle games."
   spec.homepage = "https://github.com/davidstosik/zora-ruby"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"

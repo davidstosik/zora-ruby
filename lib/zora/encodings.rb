@@ -26,6 +26,7 @@ module Zora
       def self.decode(raw_string)
         raw_string.bytes.map do |byte|
           next if byte == 0
+
           self::CHARSET[byte - 16]
         end.join
       end

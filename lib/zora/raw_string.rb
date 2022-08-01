@@ -16,6 +16,7 @@ module Zora
 
     def to_s
       raise MissingEncoding unless encoding
+
       encoding.decode(data)
     end
 

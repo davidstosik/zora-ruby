@@ -31,11 +31,12 @@ module Zora
 
     def games
       @games ||= { seasons: %i(us eu), ages: %i(us jp) }.to_h do |variant, regions|
-        [variant,
+        [
+          variant,
           regions.to_h do |region|
-            [region,
-             load_save_file(variant, region)]
-          end]
+            [region, load_save_file(variant, region)]
+          end,
+        ]
       end
     end
 
