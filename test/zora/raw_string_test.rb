@@ -41,7 +41,7 @@ module Zora
     private
 
     def build_raw_string(name, encoding: nil)
-      RawString.new(EXAMPLE_STRINGS[name], encoding:)
+      RawString.new(EXAMPLE_STRINGS[name], encoding: encoding)
     end
   end
 end
