@@ -3,7 +3,7 @@ require "minitest/autorun"
 require_relative "../../lib/zora/raw_string"
 
 module Zora
-  class RawStringTest < MiniTest::Test
+  class RawStringTest < Minitest::Test
     EXAMPLE_STRINGS = {
       link_capitalized: "\x4C\x69\x6E\x6B\x00",
       satoshi_katakana: "\xBA\xC3\xBB\x00\x00",
