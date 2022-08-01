@@ -1,7 +1,8 @@
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-  ConsistentQuotesInMultiline: false
+AllCops:
+  NewCops: enable
 
+Style/Documentation:
+  Enabled: false
 
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
@@ -11,6 +12,10 @@ Style/PercentLiteralDelimiters:
     '%r': '{}'
     '%w': '()'
     '%W': '()'
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  ConsistentQuotesInMultiline: false
 
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: consistent_comma
