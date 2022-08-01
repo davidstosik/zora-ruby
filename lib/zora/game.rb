@@ -13,6 +13,10 @@ module Zora
       name: [0x52, 0x05],
     }.freeze
 
+    def self.from_file(path, index)
+      new(path, index)
+    end
+
     def initialize(path, index)
       @path = path
       @index = index

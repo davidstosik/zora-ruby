@@ -29,6 +29,13 @@ module Zora
       assert_equal "リンク", games[:ages][:jp][1].name
     end
 
+    def test_from_file
+      game = Game.from_file("test/saves/Seasons_EU.srm", 0)
+
+      assert_equal "Z11216-0", game.version
+      assert_equal "Link", game.name
+    end
+
     private
 
     def games
