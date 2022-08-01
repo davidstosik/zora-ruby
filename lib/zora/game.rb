@@ -4,11 +4,11 @@ module Zora
   class Game
     KILOBYTE = 1024
     SAVE_GAME_SIZE = 8 * KILOBYTE
-    DATA_OFFSET = 16
+    DATA_OFFSET = 0x10
     DATA_SIZE = 1360
     ADDRESSES = {
-      version: [2, 8],
-      name: [82, 5]
+      version: [0x02, 0x08],
+      name: [0x52, 0x05]
     }
 
     def initialize(path, index)
