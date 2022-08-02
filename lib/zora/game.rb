@@ -7,8 +7,9 @@ module Zora
     SIXTEEN_BIT_UNSIGNED_LITTLE_ENDIAN = "S<*"
     DATA_SIZE = 1360
     ADDRESSES = {
-      version: [0x02, 0x08],
-      name: [0x52, 0x05],
+      checksum:   [0x00, 2],
+      version:    [0x02, 8],
+      name:       [0x52, 5],
     }.freeze
 
     def initialize(data)
@@ -42,7 +43,7 @@ module Zora
     end
 
     def checksum
-      data.unpack1(SIXTEEN_BIT_UNSIGNED_LITTLE_ENDIAN)
+      fetch(:checksum).unpack1(SIXTEEN_BIT_UNSIGNED_LITTLE_ENDIAN)
     end
 
     def calculate_checksum
