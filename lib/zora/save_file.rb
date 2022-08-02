@@ -26,7 +26,8 @@ module Zora
     def valid?
       # TODO: figure out more validations
       File.exist?(file_path) && \
-        File.size(file_path) == SIZE
+        File.size(file_path) == SIZE && \
+        games.any?(&:valid?)
     end
 
     private
