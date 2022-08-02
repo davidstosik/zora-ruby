@@ -10,6 +10,7 @@ module Zora
       checksum:   [0x00, 2],
       version:    [0x02, 8],
       name:       [0x52, 5],
+      kid_name:   [0x59, 5],
     }.freeze
 
     def initialize(data)
@@ -36,6 +37,10 @@ module Zora
 
     def name
       RawString.new(fetch(:name)).to_s
+    end
+
+    def kid_name
+      RawString.new(fetch(:kid_name)).to_s
     end
 
     def valid_checksum?

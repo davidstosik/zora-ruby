@@ -46,6 +46,11 @@ module Zora
       end
     end
 
+    def test_kid_name
+      assert_equal "Taco", save_files["Seasons_US"][1].kid_name
+      assert_equal "James", save_files["Seasons_US"][2].kid_name
+    end
+
     private
 
     def save_files
