@@ -5,28 +5,28 @@ require "test_helper"
 module Zora
   class GameTest < Minitest::Test
     def test_version_returns_the_games_version
-      assert_equal "Z11216-0", games[:seasons][:us][1].version
+      assert_equal "Z11216-0", games["Seasons_US"][1].version
     end
 
     def test_variant_returns_either_seasons_or_ages
-      assert_equal "Seasons", games[:seasons][:us][1].variant
-      assert_equal "Ages", games[:ages][:us][0].variant
+      assert_equal "Seasons", games["Seasons_US"][1].variant
+      assert_equal "Ages", games["Ages_US"][0].variant
     end
 
     def test_valid_returns_true_if_the_game_is_valid
-      assert games[:seasons][:us][1].valid?
+      assert games["Seasons_US"][1].valid?
     end
 
     def test_valid_returns_false_if_the_game_is_invalid
-      refute games[:seasons][:us][0].valid?
+      refute games["Seasons_US"][0].valid?
     end
 
     def test_name_returns_the_games_name # rubocop:disable Metrics/AbcSize
-      assert_equal "Kabi", games[:seasons][:us][1].name
-      assert_equal "Andy", games[:seasons][:us][2].name
-      assert_equal "Link", games[:seasons][:eu][0].name
-      assert_equal "Link", games[:ages][:us][0].name
-      assert_equal "リンク", games[:ages][:jp][1].name
+      assert_equal "Kabi", games["Seasons_US"][1].name
+      assert_equal "Andy", games["Seasons_US"][2].name
+      assert_equal "Link", games["Seasons_EU"][0].name
+      assert_equal "Link", games["Ages_US"][0].name
+      assert_equal "リンク", games["Ages_JP"][1].name
     end
 
     def test_from_file
@@ -37,12 +37,9 @@ module Zora
     end
 
     def test_checksum
-      game = Game.from_file("test/saves/Seasons_EU.srm", 0)
-      assert_equal 0x5825, game.checksum
-      game = Game.from_file("test/saves/Ages_JP.srm", 1)
-      assert_equal 0x1BA3, game.checksum
-      game = Game.from_file("test/saves/Seasons_US.srm", 2)
-      assert_equal 0x89BA, game.checksum
+      assert_equal 0x5825, games["Seasons_EU"][0].checksum
+      assert_equal 0x1BA3, games["Ages_JP"][1].checksum
+      assert_equal 0x89BA, games["Seasons_US"][2].checksum
     end
 
     def test_calculate_checksum
@@ -51,7 +48,7 @@ module Zora
         ["Ages_JP", 1],
         ["Seasons_US", 2],
       ].each do |name, index|
-        game = Game.from_file("test/saves/#{name}.srm", index)
+        game = games[name][index]
         assert_equal game.checksum, game.calculate_checksum
       end
     end
@@ -59,19 +56,13 @@ module Zora
     private
 
     def games
-      @games ||= { seasons: %i(us eu), ages: %i(us jp) }.to_h do |variant, regions|
+      @games ||= %w(Seasons_US Seasons_EU Ages_US Ages_JP).map.to_h do |name|
         [
-          variant,
-          regions.to_h do |region|
-            [region, load_save_file(variant, region)]
+          name,
+          0.upto(2).map do |index|
+            Game.from_file("test/saves/#{name}.srm", index)
           end,
         ]
-      end
-    end
-
-    def load_save_file(variant, region)
-      0.upto(2).map do |index|
-        Game.from_file("test/saves/#{variant.to_s.capitalize}_#{region.to_s.upcase}.srm", index)
       end
     end
   end
