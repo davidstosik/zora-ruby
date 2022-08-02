@@ -18,9 +18,7 @@ module Zora
     end
 
     def games
-      0.upto(2).map do |index|
-        self[index]
-      end
+      0.upto(2).map(&method(:[]))
     end
 
     def valid?
