@@ -29,13 +29,6 @@ module Zora
       assert_equal "リンク", save_files["Ages_JP"][1].name
     end
 
-    def test_from_file
-      game = Game.from_file("test/saves/Seasons_EU.srm", 0)
-
-      assert_equal "Z11216-0", game.version
-      assert_equal "Link", game.name
-    end
-
     def test_checksum
       assert_equal 0x5825, save_files["Seasons_EU"][0].checksum
       assert_equal 0x1BA3, save_files["Ages_JP"][1].checksum

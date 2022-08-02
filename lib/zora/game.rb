@@ -5,16 +5,11 @@ require_relative "raw_string"
 module Zora
   class Game
     SIXTEEN_BIT_UNSIGNED_LITTLE_ENDIAN = "S<*"
-    DATA_OFFSET = 0x10
     DATA_SIZE = 1360
     ADDRESSES = {
       version: [0x02, 0x08],
       name: [0x52, 0x05],
     }.freeze
-
-    def self.from_file(path, index)
-      new File.read(path, DATA_SIZE, DATA_OFFSET + index * DATA_SIZE)
-    end
 
     def initialize(data)
       @data = data
