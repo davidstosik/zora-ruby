@@ -17,6 +17,7 @@ module Zora
     end
 
     def to_s
+      return nil if data.bytes[0].zero?
       raise MissingEncoding unless encoding
 
       encoding.decode(data)

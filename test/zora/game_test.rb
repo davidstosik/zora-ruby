@@ -46,9 +46,11 @@ module Zora
       end
     end
 
-    def test_kid_name
+    def test_kid_name # rubocop:disable Metrics/AbcSize
       assert_equal "Taco", save_files["Seasons_US"][1].kid_name
       assert_equal "James", save_files["Seasons_US"][2].kid_name
+      assert_nil save_files["Ages_JP"][0].kid_name
+      assert_nil save_files["Ages_JP"][2].kid_name
     end
 
     def test_linked?
