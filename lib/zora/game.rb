@@ -11,6 +11,7 @@ module Zora
       version:    [0x02, 8],
       name:       [0x52, 5],
       kid_name:   [0x59, 5],
+      animal:     [0x60, 1],
       linked:     [0x62, 1],
       hero_quest: [0x63, 1],
     }.freeze
@@ -51,6 +52,16 @@ module Zora
 
     def hero_quest?
       fetch(:hero_quest) == "\x01"
+    end
+
+    def animal
+      case (fetch(:animal).bytes.first & 0x0F)
+      when 0x0b then "Ricky"
+      when 0x0c then "Dimitri"
+      when 0x0d then "Moosh"
+      when 0 then nil
+      else raise "Unknown animal: #{fetch(:animal)}"
+      end
     end
 
     def valid_checksum?

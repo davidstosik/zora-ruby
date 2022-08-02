@@ -63,6 +63,12 @@ module Zora
       assert save_files["Seasons_US"][2].hero_quest?
     end
 
+    def test_animal
+      assert_equal "Ricky", save_files["Seasons_US"][1].animal
+      assert_equal "Moosh", save_files["Seasons_US"][2].animal
+      assert_nil save_files["Ages_JP"][0].animal
+    end
+
     private
 
     def save_files
