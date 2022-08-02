@@ -11,6 +11,8 @@ module Zora
       version:    [0x02, 8],
       name:       [0x52, 5],
       kid_name:   [0x59, 5],
+      linked:     [0x62, 1],
+      hero_quest: [0x63, 1],
     }.freeze
 
     def initialize(data)
@@ -41,6 +43,14 @@ module Zora
 
     def kid_name
       RawString.new(fetch(:kid_name)).to_s
+    end
+
+    def linked?
+      fetch(:linked) == "\x01"
+    end
+
+    def hero_quest?
+      fetch(:hero_quest) == "\x01"
     end
 
     def valid_checksum?

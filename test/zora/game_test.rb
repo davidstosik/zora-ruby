@@ -51,6 +51,16 @@ module Zora
       assert_equal "James", save_files["Seasons_US"][2].kid_name
     end
 
+    def test_linked?
+      refute save_files["Seasons_US"][1].linked?
+      assert save_files["Seasons_US"][2].linked?
+    end
+
+    def test_hero_quest?
+      refute save_files["Seasons_US"][1].hero_quest?
+      assert save_files["Seasons_US"][2].hero_quest?
+    end
+
     private
 
     def save_files
