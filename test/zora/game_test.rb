@@ -36,6 +36,26 @@ module Zora
       assert_equal "Link", game.name
     end
 
+    def test_checksum
+      game = Game.from_file("test/saves/Seasons_EU.srm", 0)
+      assert_equal 0x5825, game.checksum
+      game = Game.from_file("test/saves/Ages_JP.srm", 1)
+      assert_equal 0x1BA3, game.checksum
+      game = Game.from_file("test/saves/Seasons_US.srm", 2)
+      assert_equal 0x89BA, game.checksum
+    end
+
+    def test_calculate_checksum
+      [
+        ["Seasons_EU", 0],
+        ["Ages_JP", 1],
+        ["Seasons_US", 2],
+      ].each do |name, index|
+        game = Game.from_file("test/saves/#{name}.srm", index)
+        assert_equal game.checksum, game.calculate_checksum
+      end
+    end
+
     private
 
     def games

@@ -4,6 +4,7 @@ require_relative "raw_string"
 
 module Zora
   class Game
+    SIXTEEN_BIT_UNSIGNED_LITTLE_ENDIAN = "S<*"
     DATA_OFFSET = 0x10
     DATA_SIZE = 1360
     ADDRESSES = {
@@ -33,11 +34,24 @@ module Zora
 
     def valid?
       data.size == DATA_SIZE && \
+        valid_checksum? && \
         %w(Seasons Ages).include?(variant)
     end
 
     def name
       RawString.new(fetch(:name)).to_s
+    end
+
+    def valid_checksum?
+      checksum == calculate_checksum
+    end
+
+    def checksum
+      data[0, 2].unpack1(SIXTEEN_BIT_UNSIGNED_LITTLE_ENDIAN)
+    end
+
+    def calculate_checksum
+      data[2..].unpack(SIXTEEN_BIT_UNSIGNED_LITTLE_ENDIAN).sum & 0xFFFF
     end
 
     private
