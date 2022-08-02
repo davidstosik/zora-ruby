@@ -47,11 +47,12 @@ module Zora
     end
 
     def checksum
-      data[0, 2].unpack1(SIXTEEN_BIT_UNSIGNED_LITTLE_ENDIAN)
+      data.unpack1(SIXTEEN_BIT_UNSIGNED_LITTLE_ENDIAN)
     end
 
     def calculate_checksum
-      data[2..].unpack(SIXTEEN_BIT_UNSIGNED_LITTLE_ENDIAN).sum & 0xFFFF
+      0xFFFF & \
+        data[2..].unpack(SIXTEEN_BIT_UNSIGNED_LITTLE_ENDIAN).sum
     end
 
     private
