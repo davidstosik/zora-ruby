@@ -24,12 +24,12 @@ module Zora
       refute save_file("Seasons_US")[0].valid?
     end
 
-    def test_name_returns_the_games_name # rubocop:disable Metrics/AbcSize
-      assert_equal "Kabi", save_file("Seasons_US")[1].name
-      assert_equal "Andy", save_file("Seasons_US")[2].name
-      assert_equal "Link", save_file("Seasons_EU")[0].name
-      assert_equal "Link", save_file("Ages_US")[0].name
-      assert_equal "リンク", save_file("Ages_JP")[1].name
+    def test_hero_name # rubocop:disable Metrics/AbcSize
+      assert_equal "Kabi", save_file("Seasons_US")[1].hero_name
+      assert_equal "Andy", save_file("Seasons_US")[2].hero_name
+      assert_equal "Link", save_file("Seasons_EU")[0].hero_name
+      assert_equal "Link", save_file("Ages_US")[0].hero_name
+      assert_equal "リンク", save_file("Ages_JP")[1].hero_name
     end
 
     def test_checksum

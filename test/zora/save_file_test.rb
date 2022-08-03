@@ -14,7 +14,7 @@ module Zora
       games.each do |game|
         assert game.is_a?(Game)
         assert_equal "Seasons", game.variant
-        assert_equal "Link", game.name
+        assert_equal "Link", game.hero_name
       end
     end
 

@@ -8,7 +8,7 @@ module Zora
       checksum:   [0x00, 2],
       version:    [0x02, 8],
       id:         [0x50, 2],
-      name:       [0x52, 5],
+      hero_name:  [0x52, 5],
       kid_name:   [0x59, 5],
       behaviour:  [0x5F, 1],
       animal:     [0x60, 1],
@@ -44,8 +44,8 @@ module Zora
         %w(Seasons Ages).include?(variant)
     end
 
-    def name
-      RawString.new(fetch(:name)).to_s
+    def hero_name
+      RawString.new(fetch(:hero_name)).to_s
     end
 
     def kid_name
