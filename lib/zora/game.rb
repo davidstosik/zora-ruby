@@ -9,8 +9,10 @@ module Zora
     ADDRESSES = {
       checksum:   [0x00, 2],
       version:    [0x02, 8],
+      id:         [0x50, 2],
       name:       [0x52, 5],
       kid_name:   [0x59, 5],
+      behaviour:  [0x5F, 1],
       animal:     [0x60, 1],
       linked:     [0x62, 1],
       hero_quest: [0x63, 1],
@@ -30,6 +32,10 @@ module Zora
       when "2" then "Ages"
       else "Unknown"
       end
+    end
+
+    def id
+      fetch(:id).unpack1(SIXTEEN_BIT_UNSIGNED_LITTLE_ENDIAN)
     end
 
     def valid?
@@ -62,6 +68,10 @@ module Zora
       when 0 then nil
       else raise "Unknown animal: #{fetch(:animal)}"
       end
+    end
+
+    def behaviour
+      fetch(:behaviour).bytes.first
     end
 
     def valid_checksum?

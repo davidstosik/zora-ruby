@@ -3,7 +3,7 @@
 require "test_helper"
 
 module Zora
-  class GameTest < Minitest::Test
+  class GameTest < Minitest::Test # rubocop:disable Metrics/ClassLength
     def test_version_returns_the_games_version
       assert_equal "Z11216-0", save_files["Seasons_US"][1].version
     end
@@ -67,6 +67,14 @@ module Zora
       assert_equal "Ricky", save_files["Seasons_US"][1].animal
       assert_equal "Moosh", save_files["Seasons_US"][2].animal
       assert_nil save_files["Ages_JP"][0].animal
+    end
+
+    def test_id
+      assert_equal 14_129, save_files["Ages_US"][0].id
+    end
+
+    def test_behaviour
+      assert_equal 4, save_files["Ages_US"][0].behaviour
     end
 
     private
