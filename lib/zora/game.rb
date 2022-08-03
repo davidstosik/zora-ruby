@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "raw_string"
-
 module Zora
   class Game
     SIXTEEN_BIT_UNSIGNED_LITTLE_ENDIAN = "S<*"

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "encodings"
-
 module Zora
   class RawString
     class MissingEncoding < StandardError; end

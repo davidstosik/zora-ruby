@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "game"
-
 module Zora
   class SaveFile
     KILOBYTE = 1024
