@@ -77,6 +77,81 @@ module Zora
       assert_equal 4, save_files["Ages_US"][0].behaviour
     end
 
+    def test_free_ring # rubocop:disable Metrics/AbcSize
+      assert save_files["Ages_US"][0].free_ring?
+      refute save_files["Ages_JP"][0].free_ring?
+      assert save_files["Seasons_US"][1].free_ring?
+      assert save_files["Seasons_US"][2].free_ring?
+    end
+
+    def test_rings # rubocop:disable Metrics/MethodLength
+      expected = %w(
+        PowerRingL1
+        DoubleEdgeRing
+        ProtectionRing
+      )
+      assert_equal expected, save_files["Ages_US"][0].rings
+
+      expected = %w(
+        FriendshipRing
+        DiscoveryRing
+      )
+      assert_equal expected, save_files["Seasons_US"][1].rings
+
+      expected = %w(
+        FriendshipRing
+        PowerRingL1
+        PowerRingL2
+        PowerRingL3
+        ArmorRingL1
+        ArmorRingL2
+        RedRing
+        BlueRing
+        CursedRing
+        BlastRing
+        RangRingL1
+        GBATimeRing
+        MaplesRing
+        SteadfastRing
+        PegasusRing
+        TossRing
+        HeartRingL2
+        ChargeRing
+        LightRingL1
+        GreenLuckRing
+        BlueLuckRing
+        GoldLuckRing
+        RedLuckRing
+        GreenHolyRing
+        BlueHolyRing
+        RedHolyRing
+        SnowshoeRing
+        RocsRing
+        QuicksandRing
+        BlueJoyRing
+        GreenJoyRing
+        DiscoveryRing
+        OctoRing
+        MoblinRing
+        LikeLikeRing
+        SubrosianRing
+        DoubleEdgeRing
+        GBANatureRing
+        SlayersRing
+        RupeeRing
+        VictoryRing
+        SignRing
+        WhispRing
+        GashaRing
+        PeaceRing
+        ZoraRing
+        FistRing
+        WhimsicalRing
+        ProtectionRing
+      )
+      assert_equal expected, save_files["Seasons_US"][2].rings
+    end
+
     private
 
     def save_files

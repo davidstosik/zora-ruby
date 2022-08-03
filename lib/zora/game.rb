@@ -16,6 +16,8 @@ module Zora
       animal:     [0x60, 1],
       linked:     [0x62, 1],
       hero_quest: [0x63, 1],
+      free_ring:  [0x65, 1],
+      rings:      [0x66, 8],
     }.freeze
 
     def initialize(data)
@@ -72,6 +74,17 @@ module Zora
 
     def behaviour
       fetch(:behaviour).bytes.first
+    end
+
+    def free_ring?
+      fetch(:free_ring) == "\x01"
+    end
+
+    def rings
+      @rings ||= fetch(:rings).unpack1("Q<")
+      Rings::NAMES.select.with_index do |_name, index|
+        @rings[index] == 1
+      end
     end
 
     def valid_checksum?
