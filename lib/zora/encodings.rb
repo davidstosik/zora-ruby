@@ -33,6 +33,12 @@ module Zora
         end.join
       end
 
+      def self.encode(string)
+        string.chars.map do |char|
+          self::CHARSET.index(char) + 16
+        end.pack("C*") << "\0"
+      end
+
       def self.valid?(raw_string)
         decode(raw_string).chars - self::NAME_CHARACTERS.chars == []
       end
