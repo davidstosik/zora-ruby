@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 require "test_helper"
+require "zora/save_file_helper"
 
 module Zora
   class SaveFileTest < Minitest::Test
+    include SaveFileHelper
+
     def test_games
-      save_file = SaveFile.new("test/saves/Seasons_EU.srm")
-      games = save_file.games
+      games = save_file("Seasons_EU").games
 
       assert_equal 3, games.size
       games.each do |game|
@@ -17,14 +19,10 @@ module Zora
     end
 
     def test_valid?
-      save_file = SaveFile.new("test/saves/Seasons_EU.srm")
-
-      assert save_file.valid?
+      assert save_file("Seasons_EU").valid?
 
       Tempfile.open do |file|
-        save_file = SaveFile.new(file.path)
-
-        refute save_file.valid?
+        refute SaveFile.new(file.path).valid?
       end
     end
   end
