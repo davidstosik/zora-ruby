@@ -49,21 +49,25 @@ module Zora
     def test_kid_name # rubocop:disable Metrics/AbcSize
       assert_equal "Taco", save_files["Seasons_US"][1].kid_name
       assert_equal "James", save_files["Seasons_US"][2].kid_name
+      assert_equal "Pip", save_files["Ages_US"][0].kid_name
       assert_nil save_files["Ages_JP"][0].kid_name
       assert_nil save_files["Ages_JP"][2].kid_name
     end
 
     def test_linked?
+      assert save_files["Ages_US"][0].linked?
       refute save_files["Seasons_US"][1].linked?
       assert save_files["Seasons_US"][2].linked?
     end
 
     def test_hero_quest?
+      refute save_files["Ages_US"][0].hero_quest?
       refute save_files["Seasons_US"][1].hero_quest?
       assert save_files["Seasons_US"][2].hero_quest?
     end
 
-    def test_animal
+    def test_animal # rubocop:disable Metrics/AbcSize
+      assert_equal "Dimitri", save_files["Ages_US"][0].animal
       assert_equal "Ricky", save_files["Seasons_US"][1].animal
       assert_equal "Moosh", save_files["Seasons_US"][2].animal
       assert_nil save_files["Ages_JP"][0].animal
