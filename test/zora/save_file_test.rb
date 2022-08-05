@@ -18,6 +18,15 @@ module Zora
       end
     end
 
+    def test_square_brackets
+      save_file = save_file("Seasons_EU")
+
+      0.upto(2).each do |index|
+        assert save_file[index].is_a?(Game)
+        assert_equal save_file.games[index], save_file[index]
+      end
+    end
+
     def test_valid?
       assert save_file("Seasons_EU").valid?
 
