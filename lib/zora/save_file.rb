@@ -11,12 +11,11 @@ module Zora
     end
 
     def [](index)
-      @games ||= []
-      @games[index] ||= read_game(index)
+      games[index]
     end
 
     def games
-      0.upto(2).map(&method(:[]))
+      @games ||= read_games
     end
 
     def valid?
@@ -29,6 +28,12 @@ module Zora
     private
 
     attr_reader :file_path
+
+    def read_games
+      0.upto(2).map do |index|
+        read_game(index)
+      end
+    end
 
     def read_game(index)
       Game.new File.read(file_path, Game::DATA_SIZE, GAME_DATA_OFFSET + index * Game::DATA_SIZE)
