@@ -36,7 +36,14 @@ module Zora
     end
 
     def read_game(index)
-      Game.new File.read(file_path, Game::DATA_SIZE, GAME_DATA_OFFSET + index * Game::DATA_SIZE)
+      Game.new File.read(file_path, *game_address(index))
+    end
+
+    def game_address(index)
+      [
+        Game::DATA_SIZE,
+        GAME_DATA_OFFSET + index * Game::DATA_SIZE,
+      ]
     end
   end
 end
